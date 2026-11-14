@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>BR Academy | Curso de Bar Staff em Dublin</title>
-<meta name="description" content="Curso presencial de Bar Staff em Dublin com certificado e acesso a vagas de parceiros na comunidade. Próxima turma: 29/11.">
+<meta name="description" content="Curso de Bar Staff em Dublin para brasileiros, dentro de um pub de verdade. Certificado e apostila. Turma domingo, 29/11/2026: de €150 por €90.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
@@ -18,6 +18,7 @@ h1{font-size:1.5rem;font-weight:700;margin:14px 0 4px}
 .promo{background:var(--card);border:1px solid #2a2a2a;border-radius:16px;padding:18px;margin-bottom:18px}
 .promo .tag{display:inline-block;background:var(--yellow);color:#000;font-weight:700;font-size:.75rem;padding:3px 10px;border-radius:99px}
 .promo .price{font-size:2.2rem;font-weight:700;margin:8px 0 2px}
+.promo .old{color:var(--muted);font-size:1.1rem;font-weight:400;text-decoration:line-through;margin-right:8px}
 .promo p{color:var(--muted);font-size:.9rem}
 .btn{display:block;text-decoration:none;font-weight:600;padding:15px 18px;border-radius:14px;margin-bottom:12px;font-size:1rem}
 .wa{background:var(--green);color:#fff}
@@ -33,31 +34,71 @@ footer{margin-top:26px;color:#777;font-size:.75rem}
   <h1>BR Academy</h1>
   <p class="sub">Curso de Bar Staff em Dublin</p>
 
-  <section class="promo">
-    <span class="tag">PROMOÇÃO</span>
-    <div class="price">€90</div>
+  <!-- BLOCO DA TURMA. Trava de data: o script no fim da página troca este bloco
+       a partir de 30/11/2026 (hora de Dublin). Para abrir nova turma, editar TURMA_FIM e o bloco. -->
+  <section class="promo" id="turma">
+    <span class="tag">PROMOÇÃO DE NOVEMBRO</span>
+    <div class="price"><span class="old">€150</span>€90</div>
     <p>Curso presencial de Bar Staff em Dublin</p>
-    <p style="margin-top:8px"><strong style="color:var(--text)">Próxima turma: 29 de novembro</strong></p>
+    <p style="margin-top:8px"><strong style="color:var(--text)">Turma: domingo, 29 de novembro de 2026</strong></p>
   </section>
 
   <section class="promo list">
     <h2>O que você leva</h2>
     <ul>
-      <li>O primeiro e único treinamento de bar da Irlanda com <b>certificado</b></li>
-      <li>Treinamento em um <b>pub exclusivo</b> para os alunos</li>
-      <li>Acesso a <b>dezenas de vagas de trabalho</b> por meio de parceiros, dentro da comunidade BR Academy</li>
-      <li>Comunidade de membros com <b>mais de 2 mil alunos</b></li>
-      <li><b>Apostila</b> e <b>café da manhã</b> incluídos</li>
-      <li><b>Bônus:</b> CV no formato europeu para você arrasar</li>
+      <li>Aula <b>dentro de um pub de verdade</b>, mão na massa: trocar keg, fazer coquetel, tirar e servir pint, conhecer os tipos de cerveja</li>
+      <li><b>Certificado</b> e <b>apostila</b> que você leva para casa</li>
+      <li><b>Comunidade no WhatsApp só de alunos</b>, com vagas toda semana</li>
+      <li>Serve para quem <b>nunca trabalhou em pub</b></li>
+      <li>Também temos <b>treinamento em inglês</b></li>
+      <li>Atendimento pessoal, pelo WhatsApp e pelo Direct</li>
     </ul>
   </section>
 
-  <a class="btn wa" href="https://wa.me/353830190576?text=Oi!%20Vim%20do%20Instagram%20e%20quero%20saber%20mais%20sobre%20o%20curso%20de%20Bar%20Staff." rel="noopener">Falar no WhatsApp</a>
+  <section class="promo">
+    <p>A BR Academy é a <strong style="color:var(--text)">primeira e maior empresa de treinamento de bar staff focada em brasileiros</strong>.</p>
+  </section>
+
+  <a class="btn wa" id="wa" href="https://wa.me/353830190576?text=Oi!%20Vim%20do%20Instagram%20e%20quero%20a%20vaga%20na%20turma%20de%2029%2F11%20(%E2%82%AC90)." rel="noopener">Falar no WhatsApp</a>
   <p class="num">Se o botão não abrir, chame no WhatsApp: <a href="tel:+353830190576">083 019 0576</a></p>
   <br>
   <a class="btn ig" href="https://www.instagram.com/bracademy.ie/" rel="noopener">Voltar ao Instagram</a>
 
   <footer>BR Academy · Dublin, Irlanda</footer>
 </main>
+
+<script>
+/* TRAVA DE DATA: depois de 29/11/2026 o bloco da turma e o texto do WhatsApp deixam de falar da turma.
+   Usa a data de Dublin (não a do celular da pessoa). Vale a partir de 30/11/2026. */
+(function () {
+  var TURMA_FIM = "2026-11-30"; // primeiro dia em que a turma de 29/11 já passou
+  var hoje;
+  try {
+    hoje = new Date().toLocaleDateString("en-CA", { timeZone: "Europe/Dublin" }); // AAAA-MM-DD
+  } catch (e) {
+    var d = new Date();
+    hoje = d.getFullYear() + "-" + ("0" + (d.getMonth() + 1)).slice(-2) + "-" + ("0" + d.getDate()).slice(-2);
+  }
+  if (hoje >= TURMA_FIM) {
+    var bloco = document.getElementById("turma");
+    if (bloco) {
+      bloco.innerHTML =
+        '<span class="tag">TURMAS</span>' +
+        '<div class="price" style="font-size:1.4rem">Próxima turma em breve</div>' +
+        '<p>Fale com a gente e saiba a data.</p>';
+    }
+    var wa = document.getElementById("wa");
+    if (wa) {
+      wa.href = "https://wa.me/353830190576?text=" +
+        encodeURIComponent("Oi! Vim do Instagram e quero saber da próxima turma de Bar Staff.");
+    }
+    document.title = "BR Academy | Curso de Bar Staff em Dublin";
+    var meta = document.querySelector('meta[name="description"]');
+    if (meta) {
+      meta.setAttribute("content", "Curso de Bar Staff em Dublin para brasileiros, dentro de um pub de verdade. Certificado e apostila. Próxima turma em breve: fale com a gente.");
+    }
+  }
+})();
+</script>
 </body>
 </html>
